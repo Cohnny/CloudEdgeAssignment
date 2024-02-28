@@ -1,11 +1,7 @@
-# syntax=docker/dockerfile:1
-FROM busybox:latest
-COPY --chmod=755 <<EOF /app/run.sh
-#!/bin/sh
-while true; do
-  echo -ne "The time is now $(date +%T)\\r"
-  sleep 1
-done
-EOF
-
-ENTRYPOINT /app/run.sh
+FROM python:3-alpine3.17
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+EXPOSE 3000
+ENV FLASK_APP=main.py
+CMD ["flask", "run", "--host=0.0.0.0", "--port=3000"]
