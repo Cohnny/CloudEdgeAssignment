@@ -31,4 +31,4 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
       -
         name: Docker Compose
-        run: docker-compose -f /docker-compose.yml up -d
+        run: docker-compose -f docker-compose.yml up -d
