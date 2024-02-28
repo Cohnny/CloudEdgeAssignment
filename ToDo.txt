@@ -1,0 +1,28 @@
+Must have:
+-Första sida
+-create user
+>inga dubbletter på användarnamn
+>inga special tecken
+> a - z , siffror ska kunna användas
+-login
+>username
+>password
+-databas
+-movie name
+-relations databas
+>unique key for user, movies
+-ratings
+>Sök funktion
+>favoriter
+-CSS stil  (bootstrap)
+>backgrundsbild
+
+
+Nice to have:
+-email confirmation
+>forgot password
+>forgot username
+-mata info från imdb
+-coverpage på filmer
+
+testing some more...
