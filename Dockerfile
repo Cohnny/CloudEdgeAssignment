@@ -17,20 +17,10 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
   && echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile \
   && echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
-# Set the working directory
+
 WORKDIR /app
-
-# Copy the application files
 COPY . /app
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Set Flask environment variables
 ENV FLASK_APP=main.py
-
-# Expose the necessary port if needed
 EXPOSE 3000
-
-# Run the Flask application
 CMD ["flask", "run", "--host=0.0.0.0", "--port=3000"]
