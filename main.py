@@ -1,5 +1,6 @@
 import sqlite3
 import secrets
+import pyodbc
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bcrypt import Bcrypt
 
@@ -8,18 +9,18 @@ secret_key = secrets.token_hex(32)
 app.secret_key = secret_key
 bcrypt = Bcrypt(app)
 
-
+'''
 DATABASE = 'CloudEdgeAssignment-database.db'
 connection = sqlite3.connect(DATABASE, check_same_thread=False)
 cursor = connection.cursor()
-
 '''
+
 connection_string = ('Driver={ODBC Driver 18 for SQL Server};Server=te.cp:cloudedgeassignment.databaswindows.net,1433;'
                      'Database=CloudEdgeAssignment;Uid=CloudAdmin;Pwd={kyh2023!};Encrypt=yes;'
                      'TrustServerCertificate=no;Connection Timeout=30;')
-connection = odbc.connect(connection_string)
+connection = pyodbc.connect(connection_string)
 cursor = connection.cursor()
-'''
+
 
 
 def get_movies(user_id):
