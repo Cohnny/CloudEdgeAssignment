@@ -15,7 +15,7 @@ connection = sqlite3.connect(DATABASE, check_same_thread=False)
 cursor = connection.cursor()
 '''
 
-connection_string = ('Driver={ODBC Driver 18 for SQL Server};Server=te.cp:cloudedgeassignment.databaswindows.net,1433;'
+connection_string = ('Driver={ODBC Driver 18 for SQL Server};Server=tcp:cloudedgeassignment.database.windows.net,1433;'
                      'Database=CloudEdgeAssignment;Uid=CloudAdmin;Pwd={kyh2023!};Encrypt=yes;'
                      'TrustServerCertificate=no;Connection Timeout=30;')
 connection = pyodbc.connect(connection_string)
