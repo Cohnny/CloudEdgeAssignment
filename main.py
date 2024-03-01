@@ -36,7 +36,6 @@ connection = pyodbc.connect(connection_string)
 cursor = connection.cursor()
 
 
-
 def get_all_movies():
     cursor.execute("SELECT title, rating, user_id FROM movies")
     movie_list_db = cursor.fetchall()
