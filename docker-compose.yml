@@ -8,4 +8,4 @@ services:
       - DATABASE_USER=${DATABASE_USER}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
     ports:
-      - 5000:5000
+      - 5000:3000
