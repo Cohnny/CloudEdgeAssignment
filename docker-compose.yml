@@ -1,5 +1,11 @@
 services:
   web:
     build: .
+    environment:
+      - DATABASE_DRIVER=${DATABASE_DRIVER}
+      - DATABASE_SERVER=${DATABASE_SERVER}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
     ports:
-      - 5000:3000
+      - 5000:5000
