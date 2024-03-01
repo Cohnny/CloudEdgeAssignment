@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flaskapp:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flaskapp:${{ github.sha }}
       -
         name: Docker Compose
         run: docker-compose -f docker-compose.yml up -d
