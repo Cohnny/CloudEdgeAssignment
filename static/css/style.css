@@ -1,0 +1,19 @@
+.button {
+    color: aliceblue;
+    background-color: darkblue;
+    border-radius: 25px;
+}
+
+body {
+    background-color: blanchedalmond;
+    align-content: center;
+}
+
+p {
+    color: darkblue;
+    font-family: fantasy;
+}
+
+input {
+    font-family: fantasy;
+}
