@@ -222,7 +222,7 @@ def register():
         connection.commit()
         success_message = "Registration successful"
         error_message = None
-    except pyodbc.IntegrityError:
+    except sqlite3.IntegrityError:
         error_message = "Username already exists."
         success_message = None
 
