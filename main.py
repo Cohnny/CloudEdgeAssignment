@@ -17,6 +17,7 @@ connection = sqlite3.connect(DATABASE, check_same_thread=False)
 cursor = connection.cursor()
 '''
 
+
 load_dotenv()
 database_driver = os.getenv('DATABASE_DRIVER')
 database_server = os.getenv('DATABASE_SERVER')
