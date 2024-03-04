@@ -11,13 +11,11 @@ secret_key = secrets.token_hex(32)
 app.secret_key = secret_key
 bcrypt = Bcrypt(app)
 
-'''
 DATABASE = 'CloudEdgeAssignment-database.db'
 connection = sqlite3.connect(DATABASE, check_same_thread=False)
 cursor = connection.cursor()
+
 '''
-
-
 load_dotenv()
 database_driver = os.getenv('DATABASE_DRIVER')
 database_server = os.getenv('DATABASE_SERVER')
@@ -35,6 +33,7 @@ connection_string = (
 )
 connection = pyodbc.connect(connection_string)
 cursor = connection.cursor()
+'''
 
 
 def get_all_movies():
