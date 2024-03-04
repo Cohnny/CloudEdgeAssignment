@@ -7,22 +7,30 @@ from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
+# Generates hexadecimal string.
 secret_key = secrets.token_hex(32)
 app.secret_key = secret_key
+# Adds bcrypt hashing.
 bcrypt = Bcrypt(app)
 
+# Define database variable.
 DATABASE = 'CloudEdgeAssignment-database.db'
+# Database connection.
 connection = sqlite3.connect(DATABASE, check_same_thread=False)
+# Database cursor.
 cursor = connection.cursor()
 
+# Commented code handles azure SQL database connection.
 '''
 load_dotenv()
+# Defines database related variables
 database_driver = os.getenv('DATABASE_DRIVER')
 database_server = os.getenv('DATABASE_SERVER')
 database_name = os.getenv('DATABASE_NAME')
 database_user = os.getenv('DATABASE_USER')
 database_password = os.getenv('DATABASE_PASSWORD')
 
+# Connect to database using provided credentials
 connection_string = (
     f'Driver={{{database_driver}}};'
     f'Server={{{database_server}}};'
@@ -31,11 +39,14 @@ connection_string = (
     f'Pwd={{{database_password}}};'
     'Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 )
+# Database connection
 connection = pyodbc.connect(connection_string)
+# Database cursor
 cursor = connection.cursor()
 '''
 
 
+# Retrieve all data from the movies table in the database.
 def get_all_movies():
     cursor.execute("SELECT title, rating, user_id FROM movies")
     movie_list_db = cursor.fetchall()
@@ -43,6 +54,8 @@ def get_all_movies():
     return movie_list
 
 
+# Converts a list of movie data tuples from the database to a more readable dictionary format.
+# Each tuple in movies_list is assumed to contain (title, rating, userid).
 def add_all_movies_to_dict(movies_list):
     temp_movies = []
     for movie in movies_list:
@@ -55,6 +68,7 @@ def add_all_movies_to_dict(movies_list):
     return temp_movies
 
 
+# Retrieve all data from the movies table in the database, for a specific user.
 def get_movies(user_id):
     cursor.execute("SELECT title, rating, info FROM movies WHERE user_id=?", (user_id,))
     movie_list_db = cursor.fetchall()
@@ -62,6 +76,8 @@ def get_movies(user_id):
     return movie_list
 
 
+# Converts a list of movie data tuples from the database to a more readable dictionary format.
+# Each tuple in movies_list is assumed to contain (title, rating, info).
 def add_movies_to_dict(movies_list):
     temp_movies = []
     for movie in movies_list:
@@ -71,11 +87,13 @@ def add_movies_to_dict(movies_list):
     return temp_movies
 
 
+# Renders welcome page
 @app.route("/")
 def index():
     return render_template("welcome.html")
 
 
+# Gets userid, user movies dict, all movies dict and renders movies page.
 @app.route("/movies", methods=["GET"])
 def movies():
     userid = session["userid"]
@@ -91,6 +109,8 @@ def movies():
                            error_message=error_message)
 
 
+# Retrieves userinput for movie title, rating and description. Gets userid from session and tries to make an INSERT
+# call to the database.
 @app.route("/add_movies", methods=["POST"])
 def add_movies():
     movie_title = request.form["title"]
@@ -103,6 +123,8 @@ def add_movies():
     movie_info = request.form["info"]
     user_id = session["userid"]
 
+    # If the movie already exists in the database an exception will be thrown.
+    # Catches the exception and displays error message then redirects the user.
     try:
         new_movie = "INSERT INTO movies (title, rating, info, user_id) VALUES (?, ?, ?, ?)"
         cursor.execute(new_movie, (movie_title, movie_rating, movie_info, user_id))
@@ -113,6 +135,7 @@ def add_movies():
     except sqlite3.IntegrityError:
         error_message = "Title already exists."
         return redirect(url_for("movies") + "?error_message=" + error_message)
+
 
 
 @app.route("/remove_movie/<movie>", methods=["GET"])
