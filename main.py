@@ -137,7 +137,7 @@ def add_movies():
         return redirect(url_for("movies") + "?error_message=" + error_message)
 
 
-
+# Gets userid then removes movie tied to userid.
 @app.route("/remove_movie/<movie>", methods=["GET"])
 def remove_movies(movie):
     userid = session["userid"]
@@ -146,6 +146,8 @@ def remove_movies(movie):
     return redirect(url_for("movies"))
 
 
+# Gets userid and clicked movie title. Loops through the user movie list and breaks when the clicked movie equals the
+# movie in the list. Saves info and rating in new variables then renders description page with title, info and rating.
 @app.route("/description", methods=["GET"])
 def description():
     movie_list = get_movies(session["userid"])
@@ -162,6 +164,8 @@ def description():
     return render_template("description.html", title=movie_name, info=info, rating=rating)
 
 
+# Gets user input. Calls database for user and checks if password equals the hashed password in the database.
+# If success then login else display error message.
 @app.route("/login", methods=["POST"])
 def login():
     username = request.form["username"]
@@ -186,16 +190,20 @@ def login():
         return render_template("welcome.html", error_message=error_message)
 
 
+# Renders welcome page.
 @app.route("/logout", methods=["GET"])
 def logout():
     return render_template("welcome.html")
 
 
+# Renders register page.
 @app.route("/register_page", methods=["GET"])
 def register_page():
     return render_template("register.html")
 
 
+# Gets username and password. Checks with database if user exists. If not a new user is created with a hashed password
+# else display error message.
 @app.route("/register_user", methods=["POST"])
 def register():
     username = request.form["username"]
@@ -204,9 +212,9 @@ def register():
         error_message = "Invalid username."
         return render_template("register.html", error_message=error_message)
     password = request.form["password"]
-    hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
 
     try:
+        hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
         new_user = "INSERT INTO users (user_name, password) VALUES (?, ?)"
         cursor.execute(new_user, (username, hashed_password))
         connection.commit()
@@ -222,5 +230,6 @@ def register():
         return render_template("register.html", error_message=error_message)
 
 
+# Runs application
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
