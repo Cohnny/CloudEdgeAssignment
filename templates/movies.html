@@ -7,12 +7,12 @@ Movies
 {% endblock %}
 
 {% block body%}
-    <h1>Movies and rating:</h1>
-    <table>
+    <h1 class="text">My movies</h1>
+    <table style="display: flex; justify-content: center;">
         <tr>
             <th>Title</th>
             <th>Rating</th>
-            <th>action</th>
+            <th>Action</th>
         </tr>
         {% for i in range(movie_list|length) %}
             <tr>
@@ -22,8 +22,37 @@ Movies
             </tr>
         {% endfor %}
     </table>
-    <h3 style="margin-left: 500px;">All submitted movies:</h3>
-    <table style="margin-left: 500px;">
+
+    <h1 class="text">Add movie to list</h1>
+    <form action="/add_movies" method="POST">
+        <table>
+            <tr>
+                <td><label for="Title">Title:</label></td>
+                <td><input type="text" id="title" name="title" placeholder="Title" required></td>
+
+                {% if success_message %}
+                    <p style="color: green;">{{ success_message }}</p>
+                {% endif %}
+                {% if error_message %}
+                    <p style="color: red;">{{ error_message }}</p>
+                {% endif %}
+            </tr>
+            <tr>
+                <td><label for="Rating">Rating:</label></td>
+                <td><input type="number" id="rating" name="rating" placeholder="1-100" required></td>
+            </tr>
+            <tr>
+                <td><label for="description">Description:</label></td>
+                <td><textarea id="description" name="info" rows="4" cols="21" placeholder="Description" required></textarea></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Add movie"></td>
+            </tr>
+        </table>
+    </form>
+
+    <h1 class="text" style="display: flex; justify-content: center;">All submitted movies</h1>
+    <table style="display: flex; justify-content: center;">
         <tr>
             <th>Title</th>
             <th>Rating</th>
@@ -38,32 +67,6 @@ Movies
         {% endfor %}
     </table>
 
-    <h2>Add movie to list</h2>
-    <form action="/add_movies" method="POST">
-        <table>
-            <tr>
-                <td><label for="Title">Title:</label></td>
-                <td><input type="text" id="title" name="title"></td>
-                {% if success_message %}
-                    <p style="color: green;">{{ success_message }}</p>
-                {% endif %}
-                {% if error_message %}
-                    <p style="color: red;">{{ error_message }}</p>
-                {% endif %}
-            </tr>
-            <tr>
-                <td><label for="Rating">Rating: (1-100)</label></td>
-                <td><input type="number" id="rating" name="rating"></td>
-            </tr>
-            <tr>
-                <td><label for="description">Description:</label></td>
-                <td><textarea id="description" name="info" rows="4" cols="21"></textarea></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Add movie"></td>
-            </tr>
-        </table>
-    </form>
 {% endblock %}
 
 {% block footer %}

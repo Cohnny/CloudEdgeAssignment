@@ -1,19 +1,182 @@
-.button {
-    color: aliceblue;
-    background-color: darkblue;
-    border-radius: 25px;
+body {
+    font-family: Arial, sans-serif;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+    margin: 50px; /* Remove margin to avoid unwanted spacing */
+    padding: 0;
+    height: 100%;
+    background-image: url('/static/images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+
 }
 
-body {
-    background-color: blanchedalmond;
-    align-content: center;
+.background {
+    /* Since this class is applied to the body, you don't need to set its height to 100% */
+    background-color: rgba(255, 255, 255, 0.5);
+    min-height: 100vh;
+    display: flex; /* Add this to apply flex properties */
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center;
+}
+
+.text {
+    text-shadow: 1px 0px 3px rgba(255,255,255,0.7);
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h4 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Table */
+table {
+    border-collapse: collapse;
+    position: sticky;
+    justify-content: center;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr {
+    background-color: rgba(255,255,255,0.5);
+}
+
+/* Form */
+form {
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea {
+    width: 275px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+input[type="submit"][value="Add movie"],
+button {
+    background-color: rgba(76, 175, 80, 0.55);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+}
+
+input[type="submit"][value="Logout"],
+button {
+    background-color: rgba(255, 0, 0, 0.55);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+}
+
+input[type="submit"][value="Back"],
+button {
+    background-color: rgba(255, 0, 0, 0.55);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+}
+
+input[type="submit"][value="Add movie"]:hover,
+button:hover {
+    background-color: rgba(69, 160, 73, 0.55);
+}
+
+input[type="submit"][value="Logout"]:hover,
+button:hover {
+    background-color: rgba(139, 0, 0, 0.55);
+}
+
+input[type="submit"][value="Login"],
+button {
+    background-color: rgba(30, 144, 255, 0.55);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+}
+
+input[type="submit"][value="Register"],
+button {
+    background-color: rgba(76, 175, 80, 0.55);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+}
+
+input[type="submit"][value="Login"]:hover,
+button:hover {
+    background-color: rgba(30, 113, 255, 0.55);
+}
+
+input[type="submit"][value="Register"]:hover,
+button:hover {
+   background-color: rgba(69, 160, 73, 0.55);
+}
+
+input[type="submit"][value="Back"]:hover,
+button:hover {
+    background-color: rgba(139, 0, 0, 0.55);
 }
 
 p {
-    color: darkblue;
-    font-family: fantasy;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-input {
-    font-family: fantasy;
-}
