@@ -23,7 +23,6 @@ connection = sqlite3.connect(DATABASE, check_same_thread=False)
 cursor = connection.cursor()
 '''
 
-
 # Commented code handles azure SQL database connection.
 load_dotenv()
 # Defines database related variables
@@ -46,7 +45,6 @@ connection_string = (
 connection = pyodbc.connect(connection_string)
 # Database cursor
 cursor = connection.cursor()
-
 
 
 # Retrieve all data from the movies table in the database.
