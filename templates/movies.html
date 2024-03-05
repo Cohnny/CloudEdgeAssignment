@@ -12,7 +12,7 @@ Movies
         <tr>
             <th>Title</th>
             <th>Rating</th>
-            <th>action</th>
+            <th>Action</th>
         </tr>
         {% for i in range(movie_list|length) %}
             <tr>
@@ -38,12 +38,12 @@ Movies
                 {% endif %}
             </tr>
             <tr>
-                <td><label for="Rating">Rating: (1-100)</label></td>
-                <td><input type="number" id="rating" name="rating"></td>
+                <td><label for="Rating">Rating:</label></td>
+                <td><input type="number" id="rating" name="rating" placeholder="1-100" required></td>
             </tr>
             <tr>
                 <td><label for="description">Description:</label></td>
-                <td><textarea id="description" name="info" rows="4" cols="21"></textarea></td>
+                <td><textarea id="description" name="info" rows="4" cols="21" placeholder="Description" required></textarea></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Add movie"></td>
