@@ -13,15 +13,17 @@ app.secret_key = secret_key
 # Adds bcrypt hashing.
 bcrypt = Bcrypt(app)
 
+
+'''
 # Define database variable.
 DATABASE = 'CloudEdgeAssignment-database.db'
 # Database connection.
 connection = sqlite3.connect(DATABASE, check_same_thread=False)
 # Database cursor.
 cursor = connection.cursor()
-
-
 '''
+
+
 # Commented code handles azure SQL database connection.
 load_dotenv()
 # Defines database related variables
@@ -44,7 +46,7 @@ connection_string = (
 connection = pyodbc.connect(connection_string)
 # Database cursor
 cursor = connection.cursor()
-'''
+
 
 
 # Retrieve all data from the movies table in the database.
