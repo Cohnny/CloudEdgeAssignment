@@ -13,6 +13,7 @@ app.secret_key = secret_key
 # Adds bcrypt hashing.
 bcrypt = Bcrypt(app)
 
+
 '''
 # Define database variable.
 DATABASE = 'CloudEdgeAssignment-database.db'
