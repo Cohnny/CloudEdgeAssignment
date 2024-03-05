@@ -22,7 +22,7 @@ connection = sqlite3.connect(DATABASE, check_same_thread=False)
 cursor = connection.cursor()
 
 
-'''
+'''§
 # Commented code handles azure SQL database connection.
 load_dotenv()
 # Defines database related variables
@@ -117,7 +117,6 @@ def movies():
 def add_movies():
     movie_title = request.form["title"]
     movie_rating = request.form["rating"]
-    print(movie_rating)
     if (movie_rating.isnumeric() or movie_rating != "") and (movie_title is not None and movie_title != ""):
         movie_rating = int(movie_rating)
         if movie_rating > 100:
