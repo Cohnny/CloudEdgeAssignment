@@ -7,8 +7,8 @@ Movies
 {% endblock %}
 
 {% block body%}
-    <h1>Movies and rating:</h1>
-    <table>
+    <h1 class="text">My movies</h1>
+    <table style="display: flex; justify-content: center;">
         <tr>
             <th>Title</th>
             <th>Rating</th>
@@ -22,28 +22,14 @@ Movies
             </tr>
         {% endfor %}
     </table>
-    <h3 style="margin-left: 500px;">All submitted movies:</h3>
-    <table style="margin-left: 500px;">
-        <tr>
-            <th>Title</th>
-            <th>Rating</th>
-            <th>Username</th>
-        </tr>
-        {% for i in range(all_movies_list|length) %}
-            <tr>
-                <td>{{ all_movies_list[i].title }}</td>
-                <td>{{ all_movies_list[i].rating }}</td>
-                <td>{{ all_movies_list[i].username }}</td>
-            </tr>
-        {% endfor %}
-    </table>
 
-    <h2>Add movie to list</h2>
+    <h1 class="text">Add movie to list</h1>
     <form action="/add_movies" method="POST">
         <table>
             <tr>
                 <td><label for="Title">Title:</label></td>
-                <td><input type="text" id="title" name="title"></td>
+                <td><input type="text" id="title" name="title" placeholder="Title" required></td>
+
                 {% if success_message %}
                     <p style="color: green;">{{ success_message }}</p>
                 {% endif %}
@@ -64,6 +50,23 @@ Movies
             </tr>
         </table>
     </form>
+
+    <h1 class="text" style="display: flex; justify-content: center;">All submitted movies</h1>
+    <table style="display: flex; justify-content: center;">
+        <tr>
+            <th>Title</th>
+            <th>Rating</th>
+            <th>Username</th>
+        </tr>
+        {% for i in range(all_movies_list|length) %}
+            <tr>
+                <td>{{ all_movies_list[i].title }}</td>
+                <td>{{ all_movies_list[i].rating }}</td>
+                <td>{{ all_movies_list[i].username }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock %}
 
 {% block footer %}
