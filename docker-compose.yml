@@ -1,6 +1,9 @@
 services:
   web:
-    build: .
+    build:
+      dockerfile: Dockerfile
+      tags:
+        - tjonk/flaskapp:latest
     environment:
       - DATABASE_DRIVER=${DATABASE_DRIVER}
       - DATABASE_SERVER=${DATABASE_SERVER}
