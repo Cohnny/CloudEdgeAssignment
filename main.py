@@ -15,6 +15,7 @@ bcrypt = Bcrypt(app)
 
 
 
+
 # Define database variable.
 DATABASE = 'CloudEdgeAssignment-database.db'
 # Database connection.
