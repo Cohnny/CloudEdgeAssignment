@@ -117,25 +117,30 @@ def movies():
 def add_movies():
     movie_title = request.form["title"]
     movie_rating = request.form["rating"]
-    movie_rating = int(movie_rating)
-    if movie_rating > 100:
-        movie_rating = 100
-    elif movie_rating < 1:
-        movie_rating = 1
-    movie_info = request.form["info"]
-    user_id = session["userid"]
+    print(movie_rating)
+    if (movie_rating.isnumeric() or movie_rating != "") and (movie_title is not None and movie_title != ""):
+        movie_rating = int(movie_rating)
+        if movie_rating > 100:
+            movie_rating = 100
+        elif movie_rating < 1:
+            movie_rating = 1
+        movie_info = request.form["info"]
+        user_id = session["userid"]
 
-    # If the movie already exists in the database an exception will be thrown.
-    # Catches the exception and displays error message then redirects the user.
-    try:
-        new_movie = "INSERT INTO movies (title, rating, info, user_id) VALUES (?, ?, ?, ?)"
-        cursor.execute(new_movie, (movie_title, movie_rating, movie_info, user_id))
-        connection.commit()
-        success_message = "Added movie."
-        return redirect(url_for("movies") + "?success_message=" + success_message)
+        # If the movie already exists in the database an exception will be thrown.
+        # Catches the exception and displays error message then redirects the user.
+        try:
+            new_movie = "INSERT INTO movies (title, rating, info, user_id) VALUES (?, ?, ?, ?)"
+            cursor.execute(new_movie, (movie_title, movie_rating, movie_info, user_id))
+            connection.commit()
+            success_message = "Added movie."
+            return redirect(url_for("movies") + "?success_message=" + success_message)
 
-    except sqlite3.IntegrityError:
-        error_message = "Title already exists."
+        except sqlite3.IntegrityError:
+            error_message = "Title already exists."
+            return redirect(url_for("movies") + "?error_message=" + error_message)
+    else:
+        error_message = "Fill in both title and rating."
         return redirect(url_for("movies") + "?error_message=" + error_message)
 
 
