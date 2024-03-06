@@ -38,10 +38,10 @@ database_password = os.getenv('DATABASE_PASSWORD')
 # Connect to database using provided credentials
 connection_string = (
     f'Driver={{{database_driver}}};'
-    f'Server={{{database_server}}};'
-    f'Database={{{database_name}}};'
-    f'Uid={{{database_user}}};'
-    f'Pwd={{{database_password}}};'
+    f'Server={database_server};'
+    f'Database={database_name};'
+    f'Uid={database_user};'
+    f'Pwd={database_password};'
     'Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 )
 # Database connection
