@@ -50,7 +50,6 @@ connection = pyodbc.connect(connection_string)
 cursor = connection.cursor()
 
 
-
 # Retrieve all data from the movies table in the database.
 def get_all_movies():
     cursor.execute("SELECT title, rating, user_id FROM movies")
@@ -120,7 +119,6 @@ def movies():
 def add_movies():
     movie_title = request.form["title"]
     movie_rating = request.form["rating"]
-    print(movie_rating)
     if (movie_rating.isnumeric() or movie_rating != "") and (movie_title is not None and movie_title != ""):
         movie_rating = int(movie_rating)
         if movie_rating > 100:
@@ -139,7 +137,7 @@ def add_movies():
             success_message = "Added movie."
             return redirect(url_for("movies") + "?success_message=" + success_message)
 
-        except sqlite3.IntegrityError:
+        except pyodbc.IntegrityError:
             error_message = "Title already exists."
             return redirect(url_for("movies") + "?error_message=" + error_message)
     else:
@@ -193,10 +191,10 @@ def login():
                 session["userid"] = existing_user[0]
                 return redirect(url_for("movies"))
         else:
-            error_message = "Wrong password."
+            error_message = "Wrong username or password."
             return render_template("welcome.html", error_message=error_message)
     else:
-        error_message = "User does not exist."
+        error_message = "Wrong username or password."
         return render_template("welcome.html", error_message=error_message)
 
 
@@ -230,8 +228,8 @@ def register():
         connection.commit()
         success_message = "Registration successful"
         error_message = None
-    except sqlite3.IntegrityError:
-        error_message = "Username already exists."
+    except pyodbc.IntegrityError:
+        error_message = "Invalid username or password."
         success_message = None
 
     if success_message:
