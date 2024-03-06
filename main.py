@@ -14,6 +14,7 @@ app.secret_key = secret_key
 bcrypt = Bcrypt(app)
 
 
+# Commented code below used to connect to local database
 '''
 # Define database variable.
 DATABASE = 'CloudEdgeAssignment-database.db'
@@ -24,8 +25,9 @@ cursor = connection.cursor()
 '''
 
 
-# Commented code handles azure SQL database connection.
+# Loads the environment variables from .env file.
 load_dotenv()
+
 # Defines database related variables
 database_driver = os.getenv('DATABASE_DRIVER')
 database_server = os.getenv('DATABASE_SERVER')
