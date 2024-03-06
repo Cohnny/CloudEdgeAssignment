@@ -25,6 +25,7 @@ cursor = connection.cursor()
 '''
 
 
+
 # Loads the environment variables from .env file.
 load_dotenv()
 
